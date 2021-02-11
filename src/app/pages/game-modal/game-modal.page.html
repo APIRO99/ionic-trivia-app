@@ -1,0 +1,57 @@
+<ion-content>
+
+  <div class="continer">
+    
+    <div class="header">
+    
+      <div class="user-card">
+        <img [src]="'./assets/avatars/av' + avatar+ '.jpg'" alt="User Avatar">
+        <p>{{  user  }}</p>
+      </div>
+
+      <div class="countDown">
+        <p>{{  countDown  }}</p>
+      </div>
+
+    </div>
+    <div class="content">
+
+      <ion-slides 
+        [options]="slideOpts"
+        mode="md" pager="md" scrollbar="md" >
+        
+        <ion-slide
+          *ngFor="let question of questions"
+          >
+          <ion-list>
+            <ion-radio-group name="auto" value="" (ionChange)="updateAnswer($event)">
+
+              <ion-list-header>
+                <ion-label class="question">{{  question.question  }}</ion-label>
+              </ion-list-header>
+
+              <ion-item *ngFor="let answer of question.incorrect_answers">
+                <ion-label>{{  answer  }}</ion-label>
+                <ion-radio 
+                  [value]="answer"
+                  ></ion-radio>
+              </ion-item>
+
+              <div class="next-btn" (click)="validateNext()" ><p>Next</p></div>
+            </ion-radio-group>
+          </ion-list>
+        </ion-slide>
+
+        <ion-slide>
+          <app-show-results
+            [time]="totalTime"
+            [correct]="correctAnswers"
+            (closeModal)="closeModal()"></app-show-results>
+        </ion-slide>
+
+      </ion-slides>
+
+    </div>
+
+  </div> 
+</ion-content>

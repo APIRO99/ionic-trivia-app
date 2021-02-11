@@ -1,0 +1,64 @@
+.container {
+  padding: 25px !important;
+}
+
+.header {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.title {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  font-style: normal;
+  font-weight: bold;  
+}
+
+.avatar-section {
+  margin: 40px 0px;
+}
+
+.avatars-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+.avatar:checked {
+  border: 4px solid #f00;     
+}
+
+.categories-container {
+  display: flex;
+  justify-content: center;
+
+  flex-wrap: wrap;
+}
+
+.start-btn {
+  height: 50px;
+  background-color: var( --ion-color-primary );
+  margin-top: 25px;
+
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-btn h3 {
+  margin: 0px;
+  color: white;
+
+  font-style: normal;
+  font-weight: bold;
+}

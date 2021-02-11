@@ -1,0 +1,19 @@
+<ion-content class="ion-padding">
+  
+  
+  <h2>Trivia App</h2>
+
+  <ion-button (click)="goToPreGame()" expand="block" fill="clear" shape="round">
+    start new trivia
+  </ion-button>
+
+  <ion-button (click)="goToCategories()" expand="block" fill="clear" shape="round">
+    see categories
+  </ion-button>
+
+  <h3>Recent Games</h3>
+
+  <h4 *ngIf="displayPlayGamesMessages()">Play some games and the best scores will apear here!!</h4>
+
+
+</ion-content>
