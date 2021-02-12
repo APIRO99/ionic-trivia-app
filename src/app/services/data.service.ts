@@ -11,9 +11,9 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
 
-  getQuestions = (category: number) => this.doMockResponse(); 
-    // this.http.get<TriviaResponse>(`${API}&category=${category}`)
-      // .toPromise();
+  getQuestions = (category: number) => 
+    this.http.get<TriviaResponse>(`${API}&category=${category}`)
+      .toPromise();
 
   getCategories = () => 
     this.http.get<any>('/assets/categories/list.json')

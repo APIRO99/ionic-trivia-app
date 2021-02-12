@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>categories-modal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="container">
+    <div class="header">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <h2 class="title">Our Categories</h2>
+    </div>
+    <ion-list>
+      <ion-item *ngFor="let item of categories">
+        <ion-label>{{  item.title  }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

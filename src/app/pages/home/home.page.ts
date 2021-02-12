@@ -10,12 +10,19 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
+  recentGames: Game[] = [];
+
   constructor(
     private localstorageService: LocalStorageService,
     private dataService: DataService,
     private router: Router
   ) {  }
   ngOnInit () { }
+  
+  ionViewWillEnter = () => {
+    this.localstorageService.getRecentGames()
+      .then(res => this.recentGames = res);
+  }
 
   displayPlayGamesMessages = () => !this.localstorageService.existsRecentGames();
 

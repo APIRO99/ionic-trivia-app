@@ -20,7 +20,7 @@ export class PreGamePage implements OnInit {
   }
 
   categories: any;
-  category:string;
+  category:number;
   user: string;
   avatar: number;
 
@@ -35,16 +35,17 @@ export class PreGamePage implements OnInit {
 
 
 
-    let res = await this.dataService.getQuestions(20);
+    let res = await this.dataService.getQuestions(this.category);
 
     if (res.response_code === 0) {
       console.log(this.user, this.avatar, this.category);
-      await this.presentModal(res.results, this.user, this.avatar)
+      await this.presentModal(res.results, this.user, this.avatar, this.findCategory(this.category))
     } else {
       await this.presentAlert('Oppps!', 'Something went wrong, please try again')
     }
-
   }
+
+  findCategory = (id: number) => this.categories.find(cat => cat.id == id).title;
 
 
   async presentAlert(header, message) {
@@ -55,11 +56,11 @@ export class PreGamePage implements OnInit {
   }
 
 
-  async presentModal(questions, user, avatar) {
+  async presentModal(questions, user, avatar, category) {
     const modal = await this.modalCtrl.create({
       component: GameModalPage,
       cssClass: 'my-custom-class',
-      componentProps: { questions, user, avatar }
+      componentProps: { questions, user, avatar, category }
     });
     return modal.present();
   }

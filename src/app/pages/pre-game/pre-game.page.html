@@ -17,6 +17,7 @@
         <ion-avatar 
           class="avatar"
           *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12]"
+          [ngClass]="{'avatar-selected': this.avatar ==  i }"
           (click)="selectAvatar(i)">
           <img [src]="'./assets/avatars/av' + i + '.jpg'" />
         </ion-avatar>
@@ -33,10 +34,6 @@
         <ion-label>{{  item.title }}</ion-label>
       </ion-chip>
     </div>
-
-
-
-
     <div
       (click)="startGame()"
       class="start-btn">

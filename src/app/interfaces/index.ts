@@ -1,3 +1,5 @@
+import { NumberValueAccessor } from "@angular/forms";
+
 export interface TriviaResponse {
   response_code: number;
   results: Question[];
@@ -14,6 +16,7 @@ export interface Question {
 
 export interface Game {
   id: number;
+  time: number;
   userId: string;
   Score: number;
   category: string;

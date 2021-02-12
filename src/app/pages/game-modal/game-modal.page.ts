@@ -16,28 +16,24 @@ export class GameModalPage implements OnInit {
     private modalCtrl: ModalController
   ) { }
 
-  async ngOnInit() {
-    let res = await this.dataService.getQuestions(541);
-    res.results.forEach(element => {
+  ngOnInit() {
+    this.questions.forEach(element => {
+      element.question = element.question.replace(/&quot;/g, '"');
+      element.question = element.question.replace(/&#039;/g, "'");
       element.incorrect_answers.push(element.correct_answer);
       this.randomizeArray(element.incorrect_answers);
     });
 
-    this.questions = res.results;
     this.interval = this.intiInterval();
     this.resetVariables();
   }
 
   @ViewChild(IonSlides) slider: IonSlides;
 
-  // @Input() questions: Question[];
-  // @Input() user: string;
-  // @Input() avatar: number;
-  // @Input() category: string;
-
-  questions: Question[];
-  user: string = "APIRO_99";
-  avatar: number = 1;
+  @Input() questions: Question[];
+  @Input() user: string;
+  @Input() avatar: number;
+  @Input() category: string;
 
   currentQuestion = 0;
   correctAnswers = 0;
@@ -70,35 +66,27 @@ export class GameModalPage implements OnInit {
 
   validateNext = () => {
     if (this.currentAnswer === this.questions[this.currentQuestion].correct_answer) this.correctAnswers++;
-    
     if (this.questions.length > this.currentQuestion + 1) {
       this.resetVariables();
       this.currentQuestion++;
     } else clearInterval(this.interval);
-
     this.slider.slideNext();
 
   }
-
-
-
 
   closeModal = () => {
     const game: Game = {
       userId: this.user,
       Score: this.correctAnswers,
-      category: 'test Cat',
+      time: this.totalTime,
+      category: this.category,
       avatar: `./assets/avatars/av${this.avatar}.jpg`,
-      id:0
+      id:0,
     }
-
     this.localStorageService.saveNewGame(game);
     this.modalCtrl.dismiss();
   }
 
-
-
-  
 
   randomizeArray = (arr:Array<string>) => {
     let aux: Array<string> = [];
@@ -109,5 +97,4 @@ export class GameModalPage implements OnInit {
     }
     arr.push(...aux);
   }
-
 }

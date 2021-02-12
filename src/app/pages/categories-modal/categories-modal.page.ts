@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-categories-modal',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories-modal.page.scss'],
 })
 export class CategoriesModalPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  categories: any;
+  constructor(private dataService: DataService) { }
+  async ngOnInit() {
+    await this.dataService.getCategories()
+      .then(res => this.categories = res.list)
+    
   }
+
 
 }

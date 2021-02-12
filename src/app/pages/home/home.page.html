@@ -1,19 +1,28 @@
 <ion-content class="ion-padding">
-  
-  
-  <h2>Trivia App</h2>
+  <h2 class="title">Trivia App</h2>
+  <div class="btn-container">
+    <div class="new-game-btn" (click)="goToPreGame()"><p>Start new trivia</p></div>
+    <div class="categories-btn" (click)="goToCategories()"><p>See categories</p></div>
+  </div>
+  <h3 class="subtitle">Top Games</h3>
+  <h4 class="play_games-message" *ngIf="displayPlayGamesMessages()">Play some games and the best scores will apear here!!</h4>
 
-  <ion-button (click)="goToPreGame()" expand="block" fill="clear" shape="round">
-    start new trivia
-  </ion-button>
-
-  <ion-button (click)="goToCategories()" expand="block" fill="clear" shape="round">
-    see categories
-  </ion-button>
-
-  <h3>Recent Games</h3>
-
-  <h4 *ngIf="displayPlayGamesMessages()">Play some games and the best scores will apear here!!</h4>
-
+  <ion-list *ngIf="!displayPlayGamesMessages()">
+    <ion-item *ngFor="let game of recentGames | sort ">
+      <ion-avatar>
+        <img [src]="game.avatar" alt="">
+      </ion-avatar>
+      <ion-label>
+        <div class="text-container">
+          <h1 class="gamecard-id">{{  game.userId  }}</h1>
+          <h1 class="gamecard-category">{{  game.category  }}</h1>
+        </div>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-end">
+        <p>Score:  {{  game.Score  }}</p>
+        <p>Time:  {{  game.time  }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
