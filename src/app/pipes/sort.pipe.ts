@@ -7,7 +7,7 @@ import { Game } from '../interfaces';
 export class SortPipe implements PipeTransform {
 
   transform(arr:Array<Game>, ...args: unknown[]): unknown {
-    arr.sort((a, b) => (b.Score - a.Score) || (a.time - b.time)) 
+    arr?.sort((a, b) => (b.Score - a.Score) || (a.time - b.time)) 
     return arr;
   }
 
